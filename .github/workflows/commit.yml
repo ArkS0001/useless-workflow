@@ -1,0 +1,26 @@
+name: Auto Commit
+
+on:
+  schedule:
+    - cron: '30 18 * * *'  # Runs at 12:00 AM UTC every day
+
+jobs:
+  commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Make Changes
+        run: |
+          # Make changes to your files here
+          echo "Automated commit for streak maintenance" >> file.txt
+
+      - name: Commit Changes
+        run: |
+          git config --global user.email "shubh26002@gmail.com"
+          git config --global user.name "ArkS0001"
+          git add .
+          git commit -m "Automated commit for streak maintenance"
+          git push
